@@ -1,0 +1,352 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Jujutsu Kaisen
+    </title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+
+      body{
+        --h:270;
+        background:#FAFAFA;
+        margin:0;
+        font-family: 'Prompt', sans-serif;
+      }
+      /* สำคัญ */
+      .container{
+        /* background:yellow; */
+        width:100%;
+        /* อย่าให้ให้กว้างเกิน 1024 */
+        max-width:1024;
+        /* เว้นขอบด้านข้างไว้ 16px */
+        padding:0 1rem;
+        margin:auto;
+        /* ทำให้ความกว้าง เท่ากับที่กำหนดไว้ อย่าสนขอบหรือ padding */
+        box-sizing:border-box;
+      }
+      .fullscreen{
+        width:100%;
+        height:100vh;
+        background:gold;
+      }
+      /* สำคัญ */
+      .flex-center-parent{
+        /* ทำให้ลูกของ element นี้ อยู่ตรงกลาง พอดีเด๊ะ */
+        display:flex;
+        justify-content:center;
+        align-items:center;
+      }
+      .search{
+        background:#FAFAFA;
+        padding: 3px 20px;
+        height: 30px;
+        box-sizing: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.0975);
+        border-radius: 3px;
+        font-size: 14px;
+        text-align: center;
+        font-family: 'FontAwesome';
+      }
+      input:focus {
+        outline: none;
+      }
+      .btn{
+        width:20%;
+        display:flex;
+        justify-content: space-around;
+      }
+      .card{
+        background:#fff;
+        border-radius:10px;
+        box-shadow:4px 8px 0px #0003;
+        padding:1em;
+        min-height:100px;
+        min-width:300px;
+      }
+      .fullwidth{
+        width:100%;
+      }
+      .img-profile{
+        width:	25%;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+        padding: 8px;
+      }
+      .padding-profile{
+        padding:5rem;	
+      }
+      .card-article{
+        border-radius:10px;
+        overflow:hidden;
+        box-shadow:0px 0px 8px grey;
+        background:white;
+        color:black;
+        transition: 1s;
+      }
+      .card-article:hover{
+        transform: scale(1.1);
+      }
+      .padding{
+        padding:1rem;
+      }
+      /* สำคัญ */
+      /* ตรงนี้คือ Grid ประกาศตัวแม่ */
+      .grid-parent,.column-12{
+        display:grid;
+        grid-template-columns:repeat(12,1fr);
+        grid-gap:2.5rem;
+      }
+      .column-1{
+        grid-template-columns:repeat(1,1fr);
+      }
+      .column-2{
+        grid-template-columns:repeat(2,1fr);
+      }
+      .column-3{
+        grid-template-columns:repeat(3,1fr);
+      }
+      .column-4{
+        grid-template-columns:repeat(4,1fr);
+      }
+      .column-5{
+        grid-template-columns:repeat(5,1fr);
+      }
+      .column-6{
+        grid-template-columns:repeat(6,1fr);
+      }
+      .column-7{
+        grid-template-columns:repeat(7,1fr);
+      }
+      .column-8{
+        grid-template-columns:repeat(8,1fr);
+      }
+      .column-9{
+        grid-template-columns:repeat(9,1fr);
+      }
+      .column-10{
+        grid-template-columns:repeat(10,1fr);
+      }
+      .column-11{
+        grid-template-columns:repeat(11,1fr);
+      }
+      /*   ตัว Grid ลูก */
+      .grid-parent > div{
+      }
+      .grid-parent > div.span-1{
+        grid-column:span 1;
+      }
+      .grid-parent > div.span-2{
+        grid-column:span 2;
+      }
+      .grid-parent > div.span-3{
+        grid-column:span 3;
+      }
+      .grid-parent > div.span-4{
+        grid-column:span 4;
+      }
+      .grid-parent > div.span-5{
+        grid-column:span 5;
+      }
+      .grid-parent > div.span-6{
+        grid-column:span 6;
+      }
+      .grid-parent > div.span-7{
+        grid-column:span 7;
+      }
+      .grid-parent > div.span-8{
+        grid-column:span 8;
+      }
+      .grid-parent > div.span-9{
+        grid-column:span 9;
+      }
+      .grid-parent > div.span-10{
+        grid-column:span 10;
+      }
+      .grid-parent > div.span-11{
+        grid-column:span 11;
+      }
+      .grid-parent > div.span-12{
+        grid-column:span 12;
+      }
+      header{
+        background:#FFFFFF;
+        transition:all .3s;
+        color:black;
+        position:fixed;
+        width:100%;
+        z-index:1;
+        font-family: 'Grand Hotel', cursive;
+      }
+      /* สำคัญ เรื่องการจัดเบรกพอยท์หน้าจอ*/
+      /* iPad แนวนอน*/
+      @media (max-width: 1024px) {
+        body{
+          --h:330;
+        }
+        /* สร้างสำหรับ Mobile */
+      }
+      /* iPad แนวตั้ง หรือ มือถือลงไป*/
+      @media (max-width: 768px) {
+        body{
+          --h:190;
+        }
+        /* สร้างสำหรับ Mobile */
+        .mob-column-12{
+          display:grid;
+          grid-template-columns:repeat(12,1fr);
+          grid-gap:2.5rem;
+        }
+        .mob-column-1{
+          grid-template-columns:repeat(1,1fr);
+        }
+        .mob-column-2{
+          grid-template-columns:repeat(2,1fr);
+        }
+        .mob-column-3{
+          grid-template-columns:repeat(3,1fr);
+        }
+        .mob-column-4{
+          grid-template-columns:repeat(4,1fr);
+        }
+        .mob-column-5{
+          grid-template-columns:repeat(5,1fr);
+        }
+        .mob-column-6{
+          grid-template-columns:repeat(6,1fr);
+        }
+        .mob-column-7{
+          grid-template-columns:repeat(7,1fr);
+        }
+        .mob-column-8{
+          grid-template-columns:repeat(8,1fr);
+        }
+        .mob-column-9{
+          grid-template-columns:repeat(9,1fr);
+        }
+        .mob-column-10{
+          grid-template-columns:repeat(10,1fr);
+        }
+        .mob-column-11{
+          grid-template-columns:repeat(11,1fr);
+        }
+        /*   ตัว Grid ลูก */
+        .grid-parent > div.mob-span-1{
+          grid-column:span 1;
+        }
+        .grid-parent > div.mob-span-2{
+          grid-column:span 2;
+        }
+        .grid-parent > div.mob-span-3{
+          grid-column:span 3;
+        }
+        .grid-parent > div.mob-span-4{
+          grid-column:span 4;
+        }
+        .grid-parent > div.mob-span-5{
+          grid-column:span 5;
+        }
+        .grid-parent > div.mob-span-6{
+          grid-column:span 6;
+        }
+        .grid-parent > div.mob-span-7{
+          grid-column:span 7;
+        }
+        .grid-parent > div.mob-span-8{
+          grid-column:span 8;
+        }
+        .grid-parent > div.mob-span-9{
+          grid-column:span 9;
+        }
+        .grid-parent > div.mob-span-10{
+          grid-column:span 10;
+        }
+        .grid-parent > div.mob-span-11{
+          grid-column:span 11;
+        }
+        .grid-parent > div.mob-span-12{
+          grid-column:span 12;
+        }
+      }
+      #header{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 1rem ;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div id="header">
+          <p><b>Jujutsu Kaisen</b></p>
+          <div>
+            <input class="search" type="text" placeholder="&#xF002; Search">
+          </div>
+          <div class="btn">
+            <p><i class="fa fa-home fa-lg"></i></p>
+            <p><i class="fa fa-reply fa-lg"></i></p>
+            <p><i class="fa fa-safari fa-lg"></i></p>
+            <p><i class="fa fa-heart fa-lg"></i></p>
+            <p><i class="fa fa-user-circle fa-lg"></i></p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="grid-parent">
+        <div class="span-12 mob-span-12 flex-center-parent">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889855490782285824/Anime_Scenes_on_Twitter.jpg" class="img-profile">
+          <div class="padding-profile">
+            <h1>itadori.yuji</h1>
+            <p><b>10</b> posts <b>188</b> followers <b>206</b> following</p>
+            <p><b>Itadori Yuji</b></p>
+            <p><i>Movie Character</i></p>
+            <p>「Sʜᴀᴍᴀɴ」<br>
+            	 都立呪術高等専門学校、呪術廻戦、<br>
+             	“I'ᴍ sᴄᴀʀᴇᴅ ᴏꜰ ɴᴏᴛ ᴇᴠᴇɴ ᴋɴᴏᴡɪɴɢ ᴀɴʏᴍᴏʀᴇ...<br>
+             	ᴠᴀʟᴜᴇ ᴏꜰ ᴛʜᴇ ᴘᴇᴏᴘʟᴇ I ᴛʀᴇᴀsᴜʀᴇ." 〈Rʏᴏᴍᴇɴ Sᴜᴋᴜɴᴀ〉</p>
+          </div>
+        </div>
+      </div>
+      
+      <hr><br><br><br>
+      
+      <div class="grid-parent">
+        <div class="card-article span-12 mob-span-6">
+          <iframe id="music" width="100%" height="560px" src="https://www.youtube.com/embed/8nNujr378EA?autoplay=1&controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="card-article span-4 mob-span-6">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889864513875230730/194475485_308465790879949_4187698602143028031_n.jpg?width=677&height=677" class="fullwidth">
+        </div>
+        <div class="card-article span-4 mob-span-6">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889864526823043134/194814045_341758650615222_6318658540853037971_n.jpg?width=683&height=683" class="fullwidth">
+        </div>
+        <div class="card-article span-4 mob-span-6">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889864526021943396/194679183_284182646783948_2202256198294445404_n.jpg?width=683&height=683" class="fullwidth">
+        </div>
+        <div class="card-article span-4 mob-span-6">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889864520636444692/192753931_4173335636050545_1498451135896954353_n.jpg?width=683&height=683" class="fullwidth">
+        </div>
+        <div class="card-article span-4 mob-span-6">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889865356871602276/LOVE_WHEEL___Jujutsu_Kaisen.jpg?width=683&height=683" class="fullwidth">
+        </div>
+        <div class="card-article span-4 mob-span-6">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889864521471111208/193941861_443811463316696_6954458180730484735_n.jpg?width=683&height=683" class="fullwidth">
+        </div>
+        <div class="card-article span-4 mob-span-6">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889864525279531068/194603296_290302062756240_4390115546058790318_n.jpg?width=683&height=683" class="fullwidth">
+        </div>
+        <div class="card-article span-4 mob-span-6">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889864516198871060/121208871_351164632966793_2449175233844055618_n.jpg?width=683&height=683" class="fullwidth">
+        </div>
+        <div class="card-article span-4 mob-span-6">
+          <img src="https://media.discordapp.net/attachments/598560825036242957/889864518715461632/139079509_843998363089101_2308040291909043501_n.jpg?width=683&height=683" class="fullwidth">
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+  </body>
+</html>
